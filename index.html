@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phishing Detective</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image" href="image/istockphoto-2219501457-1024x1024.jpg">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#dashboard"><span class="logo">🛡</span> Phishing Detective <small class="pill">Rule-Based Heuristics v1.2</small></a>
+    <nav id="nav">
+      <a href="#dashboard" class="on">Dashboard</a>
+      <a href="#console" data-tab="url">URL Scanner</a>
+      <a href="#console" data-tab="email">Email Scanner</a>
+      <a href="#tips">Security Tips</a>
+      <a href="#history">Scan History</a>
+    </nav>
+  </div>
+</header>
+
+<div class="privacy"><div class="wrap">● Client-side privacy safeguard: nothing you paste is sent to any server.</div></div>
+
+<main class="wrap" id="dashboard">
+  <section class="hero">
+    <div>
+      <span class="tag">Zero-trust threat verification</span>
+      <h1>Stay Safe Online with <em>Phishing Detective</em></h1>
+      <p class="sub">Quickly analyze suspicious website URLs and email messages to detect phishing attempts, deceptive spoofing, and fraud before you click or reply.</p>
+      <div class="notice"><b>Demo analysis notice.</b> Scans use local heuristics. A low score does not guarantee 100% safety. Always confirm sensitive requests through official channels.</div>
+      <div class="cards2">
+        <a class="card jump" href="#console" data-tab="url"><span class="tag s">URL &amp; Domain Check</span><h3>Scan a Website Link</h3><p>Examine domain typosquatting, deceptive subdomains and obfuscated query strings.</p><b>Launch URL Scanner →</b></a>
+        <a class="card jump" href="#console" data-tab="email"><span class="tag s g">Content &amp; Sender Audit</span><h3>Scan an Email</h3><p>Decompose urgency signals, financial bait and credential-harvester patterns.</p><b>Launch Email Scanner →</b></a>
+      </div>
+    </div>
+    <aside class="card pulse">
+      <div class="row"><b>Triage Pulse</b><span class="pill">Real-time stream</span></div>
+      <div class="shield"><span>🛡 Active filter shield</span><span>99.4% precision</span></div>
+      <div class="stats"><div><small>Community scans</small><strong>1,942,080</strong></div><div class="red"><small>Attempts blocked</small><strong>428,190</strong></div></div>
+    </aside>
+  </section>
+
+  <section>
+    <p class="kicker">Risk metric engine</p><h2>Global Triage Scoreboard &amp; Thresholds</h2>
+    <div class="score3">
+      <div class="card sc safe"><small>0 – 29 · Safe (low risk)</small><strong id="cSafe">0</strong><p>Valid TLS, normal domain age, neutral language.</p><i><b id="bSafe"></b></i></div>
+      <div class="card sc sus"><small>30 – 59 · Suspicious (medium)</small><strong id="cSus">0</strong><p>Unusual TLDs, mild urgency cues, tracking redirects.</p><i><b id="bSus"></b></i></div>
+      <div class="card sc bad"><small>60 – 100 · Dangerous (high)</small><strong id="cBad">0</strong><p>Brand typosquatting, credential keywords, threats.</p><i><b id="bBad"></b></i></div>
+    </div>
+    <p class="hint">Counts reflect scans you have run in this browser.</p>
+  </section>
+
+  <section id="console">
+    <p class="kicker">Diagnostic workstation</p><h2>Deep Inspection Console</h2>
+    <div class="card console">
+      <div class="tabs" id="tabs"><button data-tab="url" class="on">🔗 Website URL Scanner</button><button data-tab="email">✉ Email Phishing Scanner</button></div>
+
+      <div id="pane-url">
+        <label for="urlIn">Target web destination</label>
+        <div class="field"><input id="urlIn" type="text" placeholder="https://paypa1-security-verification.com/login.php?user=alert" autocomplete="off"><button id="scanUrl" class="primary">Scan URL</button></div>
+        <p class="hint">Try live examples:
+          <button class="chip ok" data-url="https://en.wikipedia.org/wiki/Main_Page">Safe: wikipedia.org</button>
+          <button class="chip mid" data-url="http://account-update-bank.freehosting.net/login">Suspicious: freehosting.net</button>
+          <button class="chip no" data-url="https://paypa1-security-verification.com/login.php?user=alert">Dangerous: paypa1-verification</button></p>
+      </div>
+
+      <div id="pane-email" hidden>
+        <label for="mailIn">Paste the email (headers help)</label>
+        <textarea id="mailIn" placeholder="From: &quot;PayPal&quot; &lt;help@paypa1.top&gt;&#10;Subject: Urgent: account suspended&#10;&#10;Dear customer, verify your password within 24 hours: http://bit.ly/abc"></textarea>
+        <div class="field"><button id="scanMail" class="primary">Scan Email</button><button id="sampleMail" class="ghost">Load sample</button></div>
+      </div>
+    </div>
+
+    <article class="card report" id="report" hidden>
+      <div class="row"><span class="pill mono" id="rId"></span><div class="rt"><small>Risk assessment</small><b id="rLabel"></b></div></div>
+      <p class="mono target" id="rTarget"></p>
+      <div class="rgrid">
+        <div class="gauge">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="track"/><circle cx="60" cy="60" r="52" class="arc" id="arc" transform="rotate(-90 60 60)"/></svg>
+          <div class="num"><strong id="rScore">0</strong><small>index</small></div>
+          <p id="rProfile"></p>
+        </div>
+        <div><h4>Detected indicators &amp; red flags</h4><ul id="rFlags" class="flags"></ul></div>
+      </div>
+      <div class="cards2">
+        <div class="why"><h4>Why did this receive this score?</h4><p id="rWhy"></p></div>
+        <div class="act"><h4>Recommended user action</h4><ul id="rAct"></ul></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="history">
+    <div class="row"><div><p class="kicker">Recent scan history · local session</p><h2>Audit Activity &amp; Prior Logs</h2></div><button id="clearH" class="ghost danger">Clear scan history</button></div>
+    <div class="card tablewrap"><table>
+      <thead><tr><th>Type</th><th>Specimen</th><th>Time</th><th>Risk</th><th>Verdict</th><th></th></tr></thead>
+      <tbody id="hBody"></tbody></table><p class="empty" id="hEmpty">No scans yet. Run one above.</p></div>
+  </section>
+
+  <section id="tips"><p class="kicker">Defensive cyber literacy</p><h2>5 Essential Rules to Avoid Getting Phished</h2><div class="rules" id="rules"></div></section>
+
+  <div class="foot-note">🛡 <span><b>Important notice:</b> Phishing Detective performs heuristic analysis based on educational rule patterns. A low-risk score does not guarantee absolute safety. Always verify suspicious communications through official channels.</span></div>
+</main>
+<footer class="wrap">© 2026 Phishing Detective · Educational SecOps diagnostic system.</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
